@@ -1,10 +1,3 @@
-### startup ###
-
-[Notes](./notes.md)
-
-[Server](http://54.82.53.184/)
-
-260server.pem is where the keys are stored
 # Startup
 
 ### Resources
