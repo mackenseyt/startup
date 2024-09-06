@@ -1,1 +1,2 @@
-Testing Conflicts and Merging
+Testing Conflicts and Merging 
+Making the changes in vscode
