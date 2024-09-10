@@ -36,10 +36,10 @@ I will use the required technologies in the following ways:
 - **WebSocket**: Real-time updates on the friend feed when a friend logs a new game or posts a review. This will ensure the social feed is updated instantly as users interact with the platform.
 
 ## Design
-![Login Page Sketch](./Pictures/login.jpeg)
-![Game Logging Page Sketch](./Pictures/mainPage.jpeg)
-![Your Games Page Sketch](./Pictures/yourGames.jpeg)
-![Map Page Sketch](./Pictures//map.jpeg)
+[Login Page Sketch](./Pictures/login.jpeg)
+[Game Logging Page Sketch](./Pictures/mainPage.jpeg)
+[Your Games Page Sketch](./Pictures/yourGames.jpeg)
+[Map Page Sketch](./Pictures//map.jpeg)
 
 ### Key Information
 The server keys are stored in `260server.pem`. Ensure that the file is kept secure and only accessible with proper permissions.
