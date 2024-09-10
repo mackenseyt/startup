@@ -4,14 +4,6 @@
 - [Notes](./notes.md): Important notes for the project.
 - [Server Access](http://54.82.53.184/): Link to the live server.
 
-### Key Information
-The server keys are stored in `260server.pem`. Ensure that the file is kept secure and only accessible with proper permissions.
-
-### Additional Instructions
-Make sure to run the following command to set correct permissions for the key file before SSH:
-```bash
- chmod 600 260server.pem
-```
 # Board Game Tracker
 
 ## Elevator Pitch
@@ -42,4 +34,19 @@ I will use the required technologies in the following ways:
 - **DB/Login**: Store users, games, reviews, and friend connections in a database. Register and login users securely with password encryption. Users must be authenticated to track games and access their friends' data.
 
 - **WebSocket**: Real-time updates on the friend feed when a friend logs a new game or posts a review. This will ensure the social feed is updated instantly as users interact with the platform.
+
+## Design
+![Login Page Sketch](./Pictures/login.jpeg)
+![Game Logging Page Sketch](./Pictures/mainPage.jpeg)
+![Your Games Page Sketch](./Pictures/yourGames.jpeg)
+![Map Page Sketch](./Pictures//map.jpeg)
+
+### Key Information
+The server keys are stored in `260server.pem`. Ensure that the file is kept secure and only accessible with proper permissions.
+
+### Additional Instructions
+Make sure to run the following command to set correct permissions for the key file before SSH:
+```bash
+ chmod 600 260server.pem
+```
 
