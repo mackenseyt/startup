@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friends - Game Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Game Tracker</h1>
+        <nav>
+            <a href="main.html">Home</a> |
+            <a href="games.html">Your Games</a> |
+            <a href="map.html">Map</a>
+        </nav>
+    </header>
+<div class="container">
+    <h1>Your Friends</h1>
+    <ul id="friend-list">
+        <!-- List of current Friends -->
+        <li>Friend 1</li>
+        <li>Friend 2</li>
+        <li>Friend 3</li>
+    </ul>
+
+    <h2>Find New Friends</h2>
+    <input type="text" id="search" placeholder="Search for Friends...">
+    <button onclick="searchFriends()">Search</button>
+
+    <!-- Placeholder for search results -->
+    <ul id="search-results"></ul>
+</div>
+
+<script>
+    function searchFriends() {
+        const searchValue = document.getElementById('search').value;
+        const results = document.getElementById('search-results');
+        
+        // Clear previous results
+        results.innerHTML = '';
+
+        // Simulate search results
+        if (searchValue) {
+            const mockResults = ['New Friend 1', 'New Friend 2', 'New Friend 3'];
+            mockResults.forEach(friend => {
+                const li = document.createElement('li');
+                li.textContent = friend;
+                results.appendChild(li);
+            });
+        }
+    }
+</script>
+
+</body>
+</html>
