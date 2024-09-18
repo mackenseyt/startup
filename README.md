@@ -45,14 +45,29 @@ I will use the required technologies in the following ways:
 The server keys are stored in `260server.pem`. Ensure that the file is kept secure and only accessible with proper permissions.
 
 # HTML deliverable
-- HTML pages - Two HTML page that represent the ability to login and vote.
-- Links - The login page automatically links to the voter page. The voter page contains links for every voting choice.
-- Text - Each of the voting choices is represented by a textual description.
-- Images - I couldn't figure out how to include an image and so I didn't do this.
-- DB/Login - Input box and submit button for login. The voting choices represent data pulled from the database.
-- WebSocket - The count of voting results represent the tally of realtime votes.
 
+- **HTML Pages**: 
+  - **Login Page (`index.html`)**: Allows users to input their username and password to log in. Once authenticated, the user is redirected to the main dashboard. (authentication doesn't work yet so I added a link to send you to the main page anyways)
+  - **Main Dashboard (`main.html`)**: Displays navigation options for tracking games, viewing a map of played games, and accessing the user profile.
+  
+- **Navigation Links**: 
+  - The login page automatically redirects to the main dashboard after a successful login. 
+  - The main dashboard includes links to the games list, map, and profile pages for easy navigation.
 
+- **Textual Descriptions**: 
+  - Each page includes clear textual descriptions and placeholders for future features such as user data, game lists, and real-time updates.
+
+- **Placeholder for Database Data**: 
+  - In the future, the app will pull data from the database, such as user profiles, game records, and game details.
+
+- **Real-Time WebSocket Data**: 
+  - The main dashboard contains a placeholder for real-time data, which will display updates from the server (such as game results or user interactions) via WebSockets.
+
+## Missing Features
+
+- **Images**: 
+  - At the moment, there are no images included. This is a placeholder for future visual elements like game covers or user avatars.
+  
 ### Additional Instructions
 Make sure to run the following command to set correct permissions for the key file before SSH:
 ```bash
