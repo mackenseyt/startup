@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Tracker - Dashboard</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        textarea {
+            width: 100%;
+            height: 100px; /* Adjust height as needed */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Game Tracker</h1>
+        <nav>
+            <a href="games.html">Games</a> |
+            <a href="map.html">Map</a> |
+            <a href="profile.html">Profile</a>
+        </nav>
+    </header>
+    
+    <main>
+        <h2>Track Your Board Games and Share with Friends!</h2>
+
+        <table>
+            <tr>
+                <th>Game</th>
+                <th>Rating</th>
+                <th>Difficulty</th>
+                <th>Reviews</th>
+            </tr>
+            <!-- Row for user input -->
+            <tr>
+                <td><input type="text" placeholder="Enter game name"></td>
+                <td>
+                    <select>
+                        <option value="">Select rating</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </td>
+                <td>
+                    <select>
+                        <option value="">Select difficulty</option>
+                        <option value="Easy">Easy</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Hard">Hard</option>
+                    </select>
+                </td>
+                <!-- Larger text area for reviews -->
+                <td><textarea placeholder="Enter your review here..."></textarea></td>
+            </tr>
+            <!-- Add more rows as needed -->
+        </table>
+
+        <div id="real-time-data">
+            <h3>Real-time Data (WebSocket)</h3>
+            <p>Incoming data from the server will be displayed here...</p>
+        </div>
+
+    </main>
+
+    <footer>
+        <p><a href="https://github.com/mackenseyt/startup">Mackensey Thomason Startup Repo</a></p>
+    </footer>
+</body>
+</html>
