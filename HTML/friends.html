@@ -41,6 +41,7 @@
 <body>
     <header>
         <h1>Welcome to Game Tracker</h1>
+        <h2>You can see a list of your current friends and search new friends to connect with.</h2>
         <nav>
             <a href="main.html">Home</a> |
             <a href="games.html">Your Games</a> |
@@ -58,31 +59,12 @@
 
     <h2>Find New Friends</h2>
     <input type="text" id="search" placeholder="Search for Friends...">
-    <button onclick="searchFriends()">Search</button>
+    <button onclick="searchFriends">Search</button>
 
     <!-- Placeholder for search results -->
     <ul id="search-results"></ul>
 </div>
 
-<script>
-    function searchFriends() {
-        const searchValue = document.getElementById('search').value;
-        const results = document.getElementById('search-results');
-        
-        // Clear previous results
-        results.innerHTML = '';
-
-        // Simulate search results
-        if (searchValue) {
-            const mockResults = ['New Friend 1', 'New Friend 2', 'New Friend 3'];
-            mockResults.forEach(friend => {
-                const li = document.createElement('li');
-                li.textContent = friend;
-                results.appendChild(li);
-            });
-        }
-    }
-</script>
 
 </body>
 </html>

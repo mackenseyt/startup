@@ -48,11 +48,15 @@ The server keys are stored in `260server.pem`. Ensure that the file is kept secu
 
 - **HTML Pages**: 
   - **Login Page (`index.html`)**: Allows users to input their username and password to log in. Once authenticated, the user is redirected to the main dashboard. (authentication doesn't work yet so I added a link to send you to the main page anyways)
-  - **Main Dashboard (`main.html`)**: Displays navigation options for tracking games, viewing a map of played games, and accessing the user profile.
-  
+  - **Main Dashboard (`main.html`)**: Displays navigation options for tracking games, viewing a map of played games, and viewing their current friends. As well as a table that they will fill out with their game rating information.
+  - **Games Page (`game.html`)**: Displays all the games they have rated.
+  - **Map Page (`map.html`)**: will display a map with tags of all the places they have played games as well as where their friends have played games.
+  - **Friends Page (`friends.html`)**: Displays all of their friends and lets them connect with new friends.
+
 - **Navigation Links**: 
   - The login page automatically redirects to the main dashboard after a successful login. 
   - The main dashboard includes links to the games list, map, and profile pages for easy navigation.
+  - The other pages also link to eachother and back to the main dashboard.
 
 - **Textual Descriptions**: 
   - Each page includes clear textual descriptions and placeholders for future features such as user data, game lists, and real-time updates.
