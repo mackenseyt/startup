@@ -72,6 +72,10 @@ The server keys are stored in `260server.pem`. Ensure that the file is kept secu
 - **Images**: 
   - At the moment, there are no images included. This is a placeholder for future visual elements like game covers or user avatars.
   
+# CSS deliverable
+
+
+
 ### Additional Instructions
 Make sure to run the following command to set correct permissions for the key file before SSH:
 ```bash

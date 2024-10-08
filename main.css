@@ -1,0 +1,81 @@
+/* Body background styles */
+body {
+    background-color: #8e979f; /* Light background for the body, change if needed */
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styles with background image */
+header {
+    background-image: url('image/catanImage.jpg');
+    background-size: cover; /* Ensures the image covers the header */
+    background-position: center; /* Centers the background image in the header */
+    background-repeat: no-repeat;
+    height: 200px; /* Adjust the height as needed */
+    color: white; /* Text color inside the header */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+header h1 {
+    
+    margin: 0;
+    font-size: 3rem; /* Size of the heading */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Shadow for readability */
+    font-weight: bold; /* Thicker text */
+}
+
+nav {
+    margin-top: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    padding: 10px 20px;
+    border: 2px solid white;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.3); /* Transparent black background */
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* Changes background on hover */
+}
+
+/* Main section styling */
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Footer styling */
+footer {
+    background-color: #343a40;
+    color: white;
+    padding: 10px 0;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+.btn-custom {
+    background-color: white; /* Sets the button background to white */
+    color: black; /* Sets the text color to black */
+   
+}
+
+.btn-custom:hover {
+    background-color: white; /* Keeps the background white on hover */
+    color: black; /* Keeps the text black on hover */
+}
