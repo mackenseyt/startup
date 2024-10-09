@@ -33,8 +33,7 @@
                         <th>Rating</th>
                         <th>Difficulty</th>
                         <th>Reviews</th>
-                        <!-- Empty header for button column -->
-                        <th></th> 
+                        <th></th> <!-- Empty header for button column -->
                     </tr>
                 </thead>
                 <tbody>
@@ -65,19 +64,32 @@
                         <td class="text-center">
                             <button class="btn btn-outline-dark">Submit</button>
                         </td>
-
                     </tr>
-
                 </tbody>
             </table>
-
         </div>
 
-        <!-- Improved WebSocket Data Section -->
-        <div id="real-time-data" class="mt-4 p-3 bg-white rounded shadow">
-            <h3>Real-time Data (WebSocket)</h3>
-            <div class="alert alert-info" role="alert">
-                Incoming data from the server will be displayed here...
+        <!-- Live Social Data Section -->
+        <div id="real-time-data" class="mt-5 p-4 bg-white rounded shadow">
+            <h3 class="mb-3">The Game Feed</h3>
+            <p class="text-muted">See what games your friends are playing in real-time:</p>
+
+            <div class="alert alert-secondary" role="alert">
+                <strong>Friend:</strong> John Doe<br>
+                <strong>Game:</strong> Catan<br>
+                <strong>Rating:</strong> 5/5<br>
+                <strong>Difficulty:</strong> Medium<br>
+                <strong>Review:</strong> "Great game, really fun with friends!"<br>
+                <strong>Date Played:</strong> October 8, 2024
+            </div>
+
+            <div class="alert alert-secondary" role="alert">
+                <strong>Friend:</strong> Jane Smith<br>
+                <strong>Game:</strong> Ticket to Ride<br>
+                <strong>Rating:</strong> 4/5<br>
+                <strong>Difficulty:</strong> Easy<br>
+                <strong>Review:</strong> "A fun, strategic game!"<br>
+                <strong>Date Played:</strong> October 6, 2024
             </div>
         </div>
 
