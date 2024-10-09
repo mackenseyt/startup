@@ -73,12 +73,10 @@ The server keys are stored in `260server.pem`. Ensure that the file is kept secu
   - At the moment, there are no images included. This is a placeholder for future visual elements like game covers or user avatars.
   
 # CSS deliverable
-
-
-
-### Additional Instructions
-Make sure to run the following command to set correct permissions for the key file before SSH:
-```bash
- chmod 600 260server.pem
-```
+- Header, Footer, and Main Content: Consistently styled with a unified color scheme and typography for a polished look.
+- Navigation Elements: Improved aesthetics by removing underlines and adjusting colors for better visual, buttons are ourlined for clarity.
+- Responsive Design: The application is fully responsive, adapting seamlessly to different screen sizes and devices.
+- Application Elements: Utilized effective contrast and whitespace to enhance readability and user interaction.
+- Consistent Text Styling: Applied uniform fonts across all text content to maintain consistency.
+- Image Handling: There are images as the header of each page. Centered and filling the entire header.
 
