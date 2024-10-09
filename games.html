@@ -9,26 +9,49 @@
     <!-- Custom CSS (if you have any) -->
     <link rel="stylesheet" href="main.css">
 </head>
-<body class="bg-light">
+<body class="bg-light d-flex flex-column min-vh-100">
     <header class="bg-dark text-white py-3">
         <div class="container">
             <h1 class="display-4">My Played Games</h1>
             <nav class="mt-3">
-                <a href="main.html" class="btn btn-outline-light me-2">Home</a>
-                <a href="map.html" class="btn btn-outline-light me-2">Map</a>
-                <a href="friends.html" class="btn btn-outline-light">Friends</a>
+                <a href="main.html" class="btn btn-light text-dark me-2">Home</a>
+                <a href="map.html" class="btn btn-light text-dark me-2">Map</a>
+                <a href="friends.html" class="btn btn-light text-dark me-2">Friends</a>
             </nav>
         </div>
     </header>
     
-    <main class="container my-4">
+    <main class="container my-4 flex-grow-1">
         <h2 class="mb-4">Game History</h2>
-        <p class="lead">This is where the list of games you've played will appear.</p>
-        <ul id="game-list" class="list-group">
-            <!-- Placeholder for dynamically loaded games from the database -->
-            <li class="list-group-item">Example Game 1</li>
-            <li class="list-group-item">Example Game 2</li>
-        </ul>
+        <div class="accordion" id="gameAccordion">
+            <!-- Example Game 1 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Example Game 1
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#gameAccordion">
+                    <div class="accordion-body">
+                        Details about Example Game 1.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example Game 2 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Example Game 2
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#gameAccordion">
+                    <div class="accordion-body">
+                        Details about Example Game 2.
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
     
     <footer class="bg-dark text-white text-center py-3">

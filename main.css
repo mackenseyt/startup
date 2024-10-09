@@ -79,3 +79,13 @@ footer a:hover {
     background-color: white; /* Keeps the background white on hover */
     color: black; /* Keeps the text black on hover */
 }
+.btn-primary {
+    background-color: #333; /* Change to black or dark gray */
+    border-color: #333;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #555; /* Lighter shade for hover effect */
+    border-color: #555;
+}
