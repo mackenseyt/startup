@@ -1,7 +1,8 @@
 // src/App.jsx
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { Login } from './login/login'; // Ensure the import path is correct
+import { Main } from './main/main'; // Ensure the import path is correct
 import { AuthState } from './login/authState'; // Ensure the import path is correct
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
@@ -14,15 +15,28 @@ function App() {
     return (
         <BrowserRouter>
             <div className='body bg-dark text-light'>
-                <Login
-                    userName={userName}
-                    authState={authState}
-                    onAuthChange={(userName, authState) => {
-                        setAuthState(authState);
-                        setUserName(userName);
-                        localStorage.setItem('userName', userName); // Store username in localStorage
-                    }}
-                />
+                <Routes>
+                    <Route
+                        path="/"
+                        element={
+                            authState === AuthState.Authenticated ? (
+                                <Navigate to="/main" /> // Redirect to /main if authenticated
+                            ) : (
+                                <Login
+                                    userName={userName}
+                                    authState={authState}
+                                    onAuthChange={(userName, authState) => {
+                                        setAuthState(authState);
+                                        setUserName(userName);
+                                        localStorage.setItem('userName', userName); // Store username in localStorage
+                                    }}
+                                />
+                            )
+                        }
+                    />
+                    <Route path="/main" element={<Main />} />
+                    {/* Add other routes here if needed */}
+                </Routes>
             </div>
         </BrowserRouter>
     );
