@@ -14,18 +14,22 @@ export function Main({ onLogout }) {
         navigate('/');
       }
 
+    function goToPage(path) {
+        navigate(path);
+    }
+
     return (
         <div className="bg-light d-flex flex-column min-vh-100">
-            <header className="bg-dark text-white py-3">
+            <header className="main_header">
                 <div className="container d-flex justify-content-between align-items-center">
                     <h1 className="display-4">Welcome to Game Tracker</h1>
-                    <Button variant='secondary' onClick={logout}>
+                    <Button variant='light' onClick={logout}>
                         Logout
                     </Button>
                 </div>
                 <nav className="container mt-3">
                     <Button variant="dark" href="/main" className="me-2">Home</Button>
-                    <Button variant="light" href="/games" className="me-2">Your Games</Button>
+                    <Button variant="light" onClick={() => goToPage('/games')} className="me-2">Your Games</Button>
                     <Button variant="light" href="/friends" className="me-2">Friends</Button>
                     <Button variant="light" href="/map" className="me-2">Map</Button>
                 </nav>

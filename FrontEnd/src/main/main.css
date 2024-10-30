@@ -6,8 +6,8 @@ body {
 }
 
 /* Header styles with background image */
-header {
-    background-image: url('image/risk.jpg');
+.main_header {
+    background-image: url('/risk.jpg');
     background-size: cover; /* Ensures the image covers the header */
     background-position: center; /* Centers the background image in the header */
     background-repeat: no-repeat;

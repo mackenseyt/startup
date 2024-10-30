@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Login } from './login/login';
 import { Main } from './main/main';
+import { Games } from './games/game'; // Import the Games component
 import { AuthState } from './login/authState';
-// import './app.css';
 
 function App() {
   const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
@@ -40,6 +40,17 @@ function App() {
                 setUserName('');
               }}
             />
+          }
+        />
+        <Route
+          path="/games"
+          element={
+            <Games
+            onLogout={() => {
+              setAuthState(AuthState.Unauthenticated);
+              setUserName('');
+            }}
+             /> // Render the Games component when the /games path is accessed
           }
         />
       </Routes>
