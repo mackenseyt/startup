@@ -1,16 +1,19 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import { MessageDialog } from './MessageDialog';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 export function Unauthenticated(props) {
   const [userName, setUserName] = React.useState(props.userName);
   const [password, setPassword] = React.useState('');
   const [displayError, setDisplayError] = React.useState(null);
+  const navigate = useNavigate(); // Initialize navigate hook
 
   async function loginUser() {
     if (userName === 'testuser' && password === 'password123') {
         localStorage.setItem('userName', userName);
         props.onLogin(userName);
+        navigate('/main'); // Navigate to main
     } else {
         setDisplayError('Invalid username or password');
     }
@@ -25,7 +28,7 @@ export function Unauthenticated(props) {
 
         <main className="row justify-content-center">
           <div className="col-md-6">
-            <form onSubmit={(e) => e.preventDefault()} className="p-4 bg-white rounded shadow">
+            <form onSubmit={(e) => { e.preventDefault(); loginUser(); }} className="p-4 bg-white rounded shadow">
               <div className="mb-3">
                 <label htmlFor="username" className="form-label">Username:</label>
                 <input

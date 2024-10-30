@@ -2,39 +2,67 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  justify-content: center;
+  align-items: center; 
   min-width: 320px;
   min-height: 100vh;
+
+  /* Background image settings */
+  background-image: url('../public/loginPicture.jpg'); 
+  background-size: cover; /* Ensures the image covers the entire background */
+  background-position: center; /* Centers the background image */
+  background-repeat: no-repeat; /* Prevents repeating the image */
+  background-attachment: fixed; /* Keeps the image fixed while scrolling */
+}
+
+.container {
+  background-color: rgba(255, 255, 255, 0.8); /* Slightly more transparent white */
+  border-radius: 10px;
+  padding: 20px; /* Increased padding for comfort */
+  width: 100%; /* Make it responsive */
+  max-width: 600px; /* Limit maximum width */
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 2.5em; /* Adjusted size for balance */
+  color: #333; /* Darker color for contrast */
+  text-align: center; /* Center the heading */
 }
 
+input {
+  width: 100%; /* Make input fields take full width */
+  padding: 10px; /* Add padding for better clickability */
+  margin: 10px 0; /* Space between inputs */
+  border-radius: 5px; /* Rounded corners */
+  border: 1px solid #ccc; /* Light border */
+}
+
+.login-button {
+  background-color: #007bff; /* Primary color */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition for hover */
+}
+
+.login-button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Additional button styling */
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -42,27 +70,24 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #1a1a1a; /* Dark button color */
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color 0.25s; /* Transition for border color */
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #646cff; /* Light border on hover */
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 4px auto -webkit-focus-ring-color; /* Outline on focus */
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* Links */
+a {
+  font-weight: 500;
+  color: #646cff; /* Link color */
+  text-decoration: inherit; /* Remove underline */
+}
+a:hover {
+  color: #535bf2; /* Link hover color */
 }

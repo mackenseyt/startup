@@ -3,7 +3,8 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Table, Form, Alert } from 'react-bootstrap';
 
-function Main() {
+
+export function Main() {
     return (
         <div className="bg-light d-flex flex-column min-vh-100">
             <header className="bg-dark text-white py-3">
