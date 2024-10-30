@@ -2,21 +2,33 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Table, Form, Alert } from 'react-bootstrap';
-import './main.css'; 
+import { useNavigate } from 'react-router-dom';
+import './main.css';
 
-export function Main() {
+export function Main({ onLogout }) {
+    const navigate = useNavigate();
+
+    function logout() {
+        localStorage.removeItem('userName');
+        onLogout();
+        navigate('/');
+      }
+
     return (
         <div className="bg-light d-flex flex-column min-vh-100">
             <header className="bg-dark text-white py-3">
-                <div className="container">
+                <div className="container d-flex justify-content-between align-items-center">
                     <h1 className="display-4">Welcome to Game Tracker</h1>
-                    <nav className="mt-3">
-                        <Button variant="dark" href="/main" className="me-2">Home</Button>
-                        <Button variant="light" href="/games" className="me-2">Your Games</Button>
-                        <Button variant="light" href="/friends" className="me-2">Friends</Button>
-                        <Button variant="light" href="/map" className="me-2">Map</Button>
-                    </nav>
+                    <Button variant='secondary' onClick={logout}>
+                        Logout
+                    </Button>
                 </div>
+                <nav className="container mt-3">
+                    <Button variant="dark" href="/main" className="me-2">Home</Button>
+                    <Button variant="light" href="/games" className="me-2">Your Games</Button>
+                    <Button variant="light" href="/friends" className="me-2">Friends</Button>
+                    <Button variant="light" href="/map" className="me-2">Map</Button>
+                </nav>
             </header>
 
             <main className="container my-4 flex-grow-1">

@@ -1,0 +1,105 @@
+/* login.module.css */
+
+/* Apply styles to cover the full viewport with the background image */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Apply styles specifically to the login page container */
+.loginBody {
+    position: fixed; /* Ensure the element is fixed to cover the viewport */
+    top: 0;
+    left: 0;
+    height: 100vh; /* 100% of the viewport height */
+    width: 100vw; /* 100% of the viewport width */
+    margin: 0;
+    padding: 0;
+    background-image: url('/loginPicture.jpg');
+    background-size: cover; /* Ensure the background fully covers the page */
+    background-position: center center;
+    background-repeat: no-repeat;
+    font-family: 'Arial', sans-serif; /* Apply a consistent font */
+    display: flex; /* Flex for centering the container */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+}
+
+
+/* Container styles specific to the login component */
+.loginContainer {
+    max-width: 500px; /* Make the form a bit larger */
+    width: 100%; /* Ensure responsiveness */
+    padding: 50px; /* Increase padding for a more balanced look */
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px; /* Make the container look smoother */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    text-align: center; /* Center all text inside the container */
+}
+
+/* Input field and label styles specific to the login form */
+.loginForm label {
+    color: #000;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block; /* Ensure labels are separate from inputs */
+    text-align: left; /* Align label text to the left for readability */
+}
+
+.loginForm input {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: #333;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 15px;
+    border-radius: 5px; /* Rounded corners */
+    box-sizing: border-box;
+}
+
+/* Button Styles */
+.loginBtnPrimary {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.loginBtnPrimary:hover {
+    background-color: #0056b3; /* Darker blue for hover */
+}
+
+/* Link styles for signup and skip login */
+.loginContainer a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.loginContainer a:hover {
+    text-decoration: underline;
+}
+
+/* Footer styles */
+.loginFooter {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.loginFooter a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.loginFooter a:hover {
+    text-decoration: underline;
+}

@@ -10,84 +10,42 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* General styles for all pages */
 body {
   margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center; 
   min-width: 320px;
   min-height: 100vh;
-
-  /* Background image settings */
-  background-image: url('../public/loginPicture.jpg'); 
-  background-size: cover; /* Ensures the image covers the entire background */
-  background-position: center; /* Centers the background image */
-  background-repeat: no-repeat; /* Prevents repeating the image */
-  background-attachment: fixed; /* Keeps the image fixed while scrolling */
-}
-
-.container {
-  background-color: rgba(255, 255, 255, 0.8); /* Slightly more transparent white */
-  border-radius: 10px;
-  padding: 20px; /* Increased padding for comfort */
-  width: 100%; /* Make it responsive */
-  max-width: 600px; /* Limit maximum width */
-}
-
-h1 {
-  font-size: 2.5em; /* Adjusted size for balance */
-  color: #333; /* Darker color for contrast */
-  text-align: center; /* Center the heading */
-}
-
-input {
-  width: 100%; /* Make input fields take full width */
-  padding: 10px; /* Add padding for better clickability */
-  margin: 10px 0; /* Space between inputs */
-  border-radius: 5px; /* Rounded corners */
-  border: 1px solid #ccc; /* Light border */
-}
-
-.login-button {
-  background-color: #007bff; /* Primary color */
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease; /* Smooth transition for hover */
-}
-
-.login-button:hover {
-  background-color: #0056b3; /* Darker shade on hover */
-}
-
-/* Additional button styling */
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a; /* Dark button color */
-  cursor: pointer;
-  transition: border-color 0.25s; /* Transition for border color */
-}
-button:hover {
-  border-color: #646cff; /* Light border on hover */
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color; /* Outline on focus */
+  background-color: #f0f2f5; /* Neutral color for overall background */
 }
 
-/* Links */
+/* Application-wide container */
+.app-container {
+  background-color: transparent;
+}
+
+
+/* .footer {
+  background-color: #343a40;
+  color: white;
+  padding: 10px 0;
+} */
+
+/* .footer a {
+  color: #9faab4;
+  text-decoration: none;
+} */
+
+/* .footer a:hover {
+  text-decoration: underline;
+} */
+
 a {
   font-weight: 500;
-  color: #646cff; /* Link color */
-  text-decoration: inherit; /* Remove underline */
+  color: #646cff;
+  text-decoration: inherit;
 }
+
 a:hover {
-  color: #535bf2; /* Link hover color */
+  color: #535bf2;
 }
