@@ -2,7 +2,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Table, Form, Alert } from 'react-bootstrap';
-
+import './main.css'; 
 
 export function Main() {
     return (
