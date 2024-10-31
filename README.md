@@ -96,6 +96,10 @@ For this deliverable, I used JavaScript and React to create a fully functional, 
 - WebSocket - Incorporate WebSocket for real-time updates on friends’ activities and game logs.
 - UI Enhancements - Improve visual design by adding more graphical elements to enrich user experience.
 
+# Current Login
+**username:** `testuser`
+**password:** `password123`
+
 
 
 
