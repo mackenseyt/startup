@@ -90,8 +90,8 @@ For this deliverable, I used JavaScript and React to create a fully functional, 
 - Map Page - Contains a placeholder map widget, reserved for future location-based features.
 - Routing - Implemented React Router for smooth transitions between login, games, friends, and map pages without full-page reloads.
 - Styling - Replaced global CSS with module-specific styles, resolving potential style conflicts for a cleaner, more organized setup.
-- Deployment - Application deployed on the specified subdomain using a deployment script. Regular commits were pushed to GitHub, with key learnings documented in notes.md.
-## Next Steps
+- Deployment - Application deployed on startup.trackyourboardgames.com using a deployment script. Regular commits were pushed to GitHub.
+### Next Steps
 - Database - Integrate backend services to handle and persist user, game, and friend data.
 - WebSocket - Incorporate WebSocket for real-time updates on friends’ activities and game logs.
 - UI Enhancements - Improve visual design by adding more graphical elements to enrich user experience.
