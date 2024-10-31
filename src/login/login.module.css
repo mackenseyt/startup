@@ -1,0 +1,121 @@
+/* login.module.css */
+
+/* Reset html and body to cover the full viewport */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Full-page background style for the login page */
+.loginBody {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    margin: 0;
+    padding: 0;
+    background-image: url('/loginPicture.jpg');
+    background-size: cover; /* Ensures the image fully covers the screen */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents tiling */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Login container for form styling */
+.loginContainer {
+    max-width: 420px; /* Adjusted width for a balanced look */
+    width: 100%;
+    padding: 40px; /* Adjusted padding for a modern look */
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: none;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.loginContainer:hover {
+    transform: translateY(-5px); /* Subtle hover effect for a polished look */
+}
+header h1 {
+    text-shadow: none !important;
+}
+
+/* Form styling within login container */
+.loginForm label {
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+    text-align: left;
+}
+
+.loginForm input {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    color: #333;
+    padding: 12px;
+    width: 100%;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+}
+
+.loginForm input:focus {
+    border-color: #007bff; /* Slightly darker color on focus */
+    outline: none;
+}
+
+/* Button styling for primary action */
+.loginBtnPrimary {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px 18px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.loginBtnPrimary:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px); /* Subtle hover effect */
+}
+
+/* Link styling for the signup link and footer links */
+.loginContainer a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.loginContainer a:hover {
+    text-decoration: underline;
+}
+
+.loginFooter {
+    text-align: center;
+    margin-top: 15px;
+    padding: 0; /* Ensure no extra padding */
+    background: none; /* Remove any background color */
+    border: none; /* Remove any borders */
+    box-shadow: none; /* Ensure no box shadow */
+}
+
+.loginFooter a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600; /* Slightly bolder for readability */
+}
+
+.loginFooter a:hover {
+    text-decoration: underline;
+}
