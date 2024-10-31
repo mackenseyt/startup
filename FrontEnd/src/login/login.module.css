@@ -1,84 +1,96 @@
 /* login.module.css */
 
-/* Apply styles to cover the full viewport with the background image */
+/* Reset html and body to cover the full viewport */
 html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
+    font-family: 'Arial', sans-serif;
 }
 
-/* Apply styles specifically to the login page container */
+/* Full-page background style for the login page */
 .loginBody {
-    position: fixed; /* Ensure the element is fixed to cover the viewport */
+    position: fixed;
     top: 0;
     left: 0;
-    height: 100vh; /* 100% of the viewport height */
-    width: 100vw; /* 100% of the viewport width */
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
     margin: 0;
     padding: 0;
     background-image: url('/loginPicture.jpg');
-    background-size: cover; /* Ensure the background fully covers the page */
-    background-position: center center;
-    background-repeat: no-repeat;
-    font-family: 'Arial', sans-serif; /* Apply a consistent font */
-    display: flex; /* Flex for centering the container */
-    align-items: center; /* Center items vertically */
-    justify-content: center; /* Center items horizontally */
+    background-size: cover; /* Ensures the image fully covers the screen */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents tiling */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-
-/* Container styles specific to the login component */
+/* Login container for form styling */
 .loginContainer {
-    max-width: 500px; /* Make the form a bit larger */
-    width: 100%; /* Ensure responsiveness */
-    padding: 50px; /* Increase padding for a more balanced look */
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 15px; /* Make the container look smoother */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    text-align: center; /* Center all text inside the container */
+    max-width: 420px; /* Adjusted width for a balanced look */
+    width: 100%;
+    padding: 40px; /* Adjusted padding for a modern look */
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: none;
+    text-align: center;
+    transition: transform 0.2s ease;
 }
 
-/* Input field and label styles specific to the login form */
+.loginContainer:hover {
+    transform: translateY(-5px); /* Subtle hover effect for a polished look */
+}
+header h1 {
+    text-shadow: none !important;
+}
+
+/* Form styling within login container */
 .loginForm label {
-    color: #000;
-    font-weight: bold;
+    color: #333;
+    font-weight: 600;
     margin-bottom: 5px;
-    display: block; /* Ensure labels are separate from inputs */
-    text-align: left; /* Align label text to the left for readability */
+    display: block;
+    text-align: left;
 }
 
 .loginForm input {
-    background-color: #fff;
-    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
     color: #333;
-    padding: 10px;
+    padding: 12px;
     width: 100%;
     margin-bottom: 15px;
-    border-radius: 5px; /* Rounded corners */
+    border-radius: 5px;
     box-sizing: border-box;
+    transition: border-color 0.2s ease;
 }
 
-/* Button Styles */
+.loginForm input:focus {
+    border-color: #007bff; /* Slightly darker color on focus */
+    outline: none;
+}
+
+/* Button styling for primary action */
 .loginBtnPrimary {
     background-color: #007bff;
     border: none;
     color: white;
-    padding: 12px 20px;
-    text-align: center;
-    display: inline-block;
+    padding: 10px 18px;
     font-size: 16px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
     width: 100%;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .loginBtnPrimary:hover {
-    background-color: #0056b3; /* Darker blue for hover */
+    background-color: #0056b3;
+    transform: translateY(-3px); /* Subtle hover effect */
 }
 
-/* Link styles for signup and skip login */
+/* Link styling for the signup link and footer links */
 .loginContainer a {
     color: #007bff;
     text-decoration: none;
@@ -89,15 +101,19 @@ html, body {
     text-decoration: underline;
 }
 
-/* Footer styles */
 .loginFooter {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 15px;
+    padding: 0; /* Ensure no extra padding */
+    background: none; /* Remove any background color */
+    border: none; /* Remove any borders */
+    box-shadow: none; /* Ensure no box shadow */
 }
 
 .loginFooter a {
     color: #007bff;
     text-decoration: none;
+    font-weight: 600; /* Slightly bolder for readability */
 }
 
 .loginFooter a:hover {
