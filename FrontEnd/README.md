@@ -80,3 +80,25 @@ The server keys are stored in `260server.pem`. Ensure that the file is kept secu
 - Consistent Text Styling: Applied uniform fonts across all text content to maintain consistency.
 - Image Handling: There are images as the header of each page. Centered and filling the entire header.
 
+# React Deliverable
+For this deliverable, I used JavaScript and React to create a fully functional, single-page application for the Board Game Tracker app, allowing seamless navigation and interaction for a single user. I also set up placeholders for upcoming features.
+- Bundled and Transpiled - Completed using Vite for streamlined project setup and fast, optimized builds.
+- Components - Built modular React components for Login, Main Dashboard, Games, Friends, and Map, enhancing code reusability and consistency across the application.
+- Login - Users can enter their credentials, which upon authentication, redirects them to the main dashboard.
+- Games Page - Displays user game history, including ratings, difficulty, and reviews. Ready for database integration to manage this data dynamically.
+- Friends Page - Lists friends with the ability to click on any friend to see more details inline, offering an interactive experience.
+- Map Page - Contains a placeholder map widget, reserved for future location-based features.
+- Routing - Implemented React Router for smooth transitions between login, games, friends, and map pages without full-page reloads.
+- Styling - Replaced global CSS with module-specific styles, resolving potential style conflicts for a cleaner, more organized setup.
+- Deployment - Application deployed on the specified subdomain using a deployment script. Regular commits were pushed to GitHub, with key learnings documented in notes.md.
+## Next Steps
+- Database - Integrate backend services to handle and persist user, game, and friend data.
+- WebSocket - Incorporate WebSocket for real-time updates on friends’ activities and game logs.
+- UI Enhancements - Improve visual design by adding more graphical elements to enrich user experience.
+
+
+
+
+
+
+
