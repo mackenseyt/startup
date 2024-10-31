@@ -13,23 +13,30 @@ export function Login({ userName, authState, onAuthChange }) {
     }
   }, [authState, navigate]);
 
+  const handleLogin = (loginUserName) => {
+    onAuthChange(loginUserName, AuthState.Authenticated);
+  };
+
+  const Header = () => (
+    <header className={styles.textCenterLogin}>
+      <h1>Login to Game Tracker</h1>
+    </header>
+  );
+
+  const Footer = () => (
+    <footer className={styles.loginFooter}>
+      <p>
+        <a href="https://github.com/mackenseyt/startup">Mackensey Thomason Startup Repo</a>
+      </p>
+    </footer>
+  );
+
   return (
     <main className={styles.loginBody}>
       <div className={styles.loginContainer}>
-        <header className={styles.textCenterLogin}>
-          <h1>Login to Game Tracker</h1>
-        </header>
-        <Unauthenticated
-          userName={userName}
-          onLogin={(loginUserName) => {
-            onAuthChange(loginUserName, AuthState.Authenticated);
-          }}
-        />
-        <footer className={styles.loginFooter}>
-          <p>
-            <a href="https://github.com/mackenseyt/startup">Mackensey Thomason Startup Repo</a>
-          </p>
-        </footer>
+        <Header />
+        <Unauthenticated userName={userName} onLogin={handleLogin} />
+        <Footer />
       </div>
     </main>
   );

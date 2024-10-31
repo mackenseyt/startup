@@ -1,5 +1,5 @@
 // src/Friends.jsx
-import React from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, ListGroup, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
@@ -7,6 +7,7 @@ import '../main/main.css';
 
 export function Friends({ onLogout }) {
     const navigate = useNavigate();
+    const [selectedFriend, setSelectedFriend] = useState(null);
 
     function logout() {
         localStorage.removeItem('userName');
@@ -39,10 +40,16 @@ export function Friends({ onLogout }) {
                 <p className="lead">Click on a friend to display their information</p>
                 <ListGroup id="friend-list" className="mb-4">
                     {/* List of current Friends */}
-                    <ListGroup.Item action onClick={() => alert('Details about Friend 1')}>Friend 1</ListGroup.Item>
-                    <ListGroup.Item action onClick={() => alert('Details about Friend 2')}>Friend 2</ListGroup.Item>
-                    <ListGroup.Item action onClick={() => alert('Details about Friend 3')}>Friend 3</ListGroup.Item>
+                    <ListGroup.Item action onClick={() => setSelectedFriend('Details about Friend 1')}>Friend 1</ListGroup.Item>
+                    <ListGroup.Item action onClick={() => setSelectedFriend('Details about Friend 2')}>Friend 2</ListGroup.Item>
+                    <ListGroup.Item action onClick={() => setSelectedFriend('Details about Friend 3')}>Friend 3</ListGroup.Item>
                 </ListGroup>
+
+                {selectedFriend && (
+                    <Alert variant="info" className="mt-3">
+                        {selectedFriend}
+                    </Alert>
+                )}
 
                 <h2>Find New Friends</h2>
                 <div className="input-group mb-3">

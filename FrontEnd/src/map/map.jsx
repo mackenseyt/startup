@@ -8,13 +8,13 @@ import '../main/main.css';
 export function Map({ onLogout }) {
     const navigate = useNavigate();
 
-    function logout() {
+    function handleLogout() {
         localStorage.removeItem('userName');
         onLogout();
         navigate('/');
     }
 
-    function goToPage(path) {
+    function navigateTo(path) {
         navigate(path);
     }
 
@@ -23,21 +23,31 @@ export function Map({ onLogout }) {
             <header className="main_header">
                 <div className="container d-flex justify-content-between align-items-center">
                     <h1 className="display-4">Find Games Played</h1>
-                    <Button variant='light' onClick={logout}>
+                    <Button variant="light" onClick={handleLogout}>
                         Logout
                     </Button>
                 </div>
                 <nav className="container mt-3">
-                    <Button variant="light" onClick={() => goToPage('/main')} className="me-2">Home</Button>
-                    <Button variant="light" onClick={() => goToPage('/games')} className="me-2">Your Games</Button>
-                    <Button variant="light" onClick={() => goToPage('/friends')} className="me-2">Friends</Button>
-                    <Button variant="dark" className="me-2">Map</Button>
+                    {['/main', '/games', '/friends', '/map'].map((path, index) => (
+                        <Button
+                            key={index}
+                            variant={path === '/map' ? 'dark' : 'light'}
+                            onClick={() => navigateTo(path)}
+                            className="me-2"
+                        >
+                            {path === '/main' ? 'Home' : path.substring(1).replace(/^\w/, c => c.toUpperCase())}
+                        </Button>
+                    ))}
                 </nav>
             </header>
 
             <main className="container my-4 flex-grow-1">
                 <h2>Explore nearby games</h2>
-                <div id="map" className="border rounded p-3 bg-white" style={{ height: '500px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '8px', marginBottom: '20px' }}>
+                <div
+                    id="map"
+                    className="border rounded p-3 bg-white"
+                    style={{ height: '500px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', marginBottom: '20px' }}
+                >
                     {/* Placeholder for a map widget */}
                     <p className="text-muted">Map loading...</p>
                 </div>

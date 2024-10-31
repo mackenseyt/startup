@@ -1,4 +1,3 @@
-// src/Main.jsx
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Table, Form, Alert } from 'react-bootstrap';
@@ -12,11 +11,17 @@ export function Main({ onLogout }) {
         localStorage.removeItem('userName');
         onLogout();
         navigate('/');
-      }
+    }
 
     function goToPage(path) {
         navigate(path);
     }
+
+    const NavigationButton = ({ path, label, variant }) => (
+        <Button variant={variant} onClick={() => goToPage(path)} className="me-2">
+            {label}
+        </Button>
+    );
 
     return (
         <div className="bg-light d-flex flex-column min-vh-100">
@@ -28,10 +33,10 @@ export function Main({ onLogout }) {
                     </Button>
                 </div>
                 <nav className="container mt-3">
-                    <Button variant="dark" onClick={() => goToPage('/main')} className="me-2">Home</Button>
-                    <Button variant="light" onClick={() => goToPage('/games')} className="me-2">Your Games</Button>
-                    <Button variant="light" onClick={() => goToPage('/friends')} className="me-2">Friends</Button>
-                    <Button variant="light" onClick={() => goToPage('/map')} className="me-2">Map</Button>
+                    <NavigationButton path="/main" label="Home" variant="dark" />
+                    <NavigationButton path="/games" label="Your Games" variant="light" />
+                    <NavigationButton path="/friends" label="Friends" variant="light" />
+                    <NavigationButton path="/map" label="Map" variant="light" />
                 </nav>
             </header>
 
@@ -84,23 +89,33 @@ export function Main({ onLogout }) {
                     <h3 className="mb-3">The Game Feed</h3>
                     <p className="text-muted">See what games your friends are playing in real-time:</p>
 
-                    <Alert variant="secondary">
-                        <strong>Friend:</strong> John Doe<br />
-                        <strong>Game:</strong> Catan<br />
-                        <strong>Rating:</strong> 5/5<br />
-                        <strong>Difficulty:</strong> Medium<br />
-                        <strong>Review:</strong> "Great game, really fun with friends!"<br />
-                        <strong>Date Played:</strong> October 8, 2024
-                    </Alert>
-
-                    <Alert variant="secondary">
-                        <strong>Friend:</strong> Jane Smith<br />
-                        <strong>Game:</strong> Ticket to Ride<br />
-                        <strong>Rating:</strong> 4/5<br />
-                        <strong>Difficulty:</strong> Easy<br />
-                        <strong>Review:</strong> "A fun, strategic game!"<br />
-                        <strong>Date Played:</strong> October 6, 2024
-                    </Alert>
+                    {[
+                        {
+                            friend: 'John Doe',
+                            game: 'Catan',
+                            rating: '5/5',
+                            difficulty: 'Medium',
+                            review: 'Great game, really fun with friends!',
+                            date: 'October 8, 2024'
+                        },
+                        {
+                            friend: 'Jane Smith',
+                            game: 'Ticket to Ride',
+                            rating: '4/5',
+                            difficulty: 'Easy',
+                            review: 'A fun, strategic game!',
+                            date: 'October 6, 2024'
+                        }
+                    ].map((entry, index) => (
+                        <Alert key={index} variant="secondary">
+                            <strong>Friend:</strong> {entry.friend}<br />
+                            <strong>Game:</strong> {entry.game}<br />
+                            <strong>Rating:</strong> {entry.rating}<br />
+                            <strong>Difficulty:</strong> {entry.difficulty}<br />
+                            <strong>Review:</strong> "{entry.review}"<br />
+                            <strong>Date Played:</strong> {entry.date}
+                        </Alert>
+                    ))}
                 </div>
             </main>
 
