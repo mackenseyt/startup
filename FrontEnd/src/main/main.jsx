@@ -28,10 +28,10 @@ export function Main({ onLogout }) {
                     </Button>
                 </div>
                 <nav className="container mt-3">
-                    <Button variant="dark" href="/main" className="me-2">Home</Button>
+                    <Button variant="dark" onClick={() => goToPage('/main')} className="me-2">Home</Button>
                     <Button variant="light" onClick={() => goToPage('/games')} className="me-2">Your Games</Button>
-                    <Button variant="light" href="/friends" className="me-2">Friends</Button>
-                    <Button variant="light" href="/map" className="me-2">Map</Button>
+                    <Button variant="light" onClick={() => goToPage('/friends')} className="me-2">Friends</Button>
+                    <Button variant="light" onClick={() => goToPage('/map')} className="me-2">Map</Button>
                 </nav>
             </header>
 

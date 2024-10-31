@@ -4,6 +4,8 @@ import { Login } from './login/login';
 import { Main } from './main/main';
 import { Games } from './games/game'; // Import the Games component
 import { AuthState } from './login/authState';
+import {Friends} from './friends/friends'
+import {Map} from './map/map'
 
 function App() {
   const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
@@ -51,6 +53,28 @@ function App() {
               setUserName('');
             }}
              /> // Render the Games component when the /games path is accessed
+          }
+        />
+        <Route
+          path="/friends"
+          element={
+            <Friends
+            onLogout={() => {
+              setAuthState(AuthState.Unauthenticated);
+              setUserName('');
+            }}
+             /> // Render the Friends component when the /friends path is accessed
+          }
+        />
+        <Route
+          path="/map"
+          element={
+            <Map
+            onLogout={() => {
+              setAuthState(AuthState.Unauthenticated);
+              setUserName('');
+            }}
+             /> // Render the Map component when the /map path is accessed
           }
         />
       </Routes>
