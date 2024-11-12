@@ -80,7 +80,9 @@ app.get('*', (req, res) => {
 });
 
 // Start the server
-const port = process.argv.length > 2 ? process.argv[2] : 5173;
+const port = process.argv.length > 2 ? process.argv[2] : 3000;
 app.listen(port, () => {
     console.log(`Server is listening on port ${port}`);
 });
+
+
