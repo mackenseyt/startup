@@ -18,8 +18,10 @@ export function Games({ onLogout }) {
     
     useEffect(() => {
         // Fetch hot games from the backend
-        fetch('/api/hotgames')
-            .then(response => response.json())
+        fetch('api/hotgames')
+            .then(response => {
+                console.log(response)
+                return response.json()})
             .then(data => {
                 console.log("Hot games data:", data); // Verify data structure
                 setHotGames(data); // Directly set hotGames with the returned array
