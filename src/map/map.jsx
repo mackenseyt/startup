@@ -1,5 +1,5 @@
 // src/Map.jsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
@@ -7,6 +7,20 @@ import '../main/main.css';
 
 export function Map({ onLogout }) {
     const navigate = useNavigate();
+    const [quote, setQuote] = useState('Loading...');
+    const [quoteAuthor, setQuoteAuthor] = useState('unknown');
+
+    useEffect(() => {
+        fetch('https://quote.cs260.click')
+            .then((response) => response.json())
+            .then((data) => {
+                setQuote(data.quote);
+                setQuoteAuthor(data.author);
+            })
+            .catch((error) => {
+                console.error('Error fetching quote:', error);
+            });
+    }, []);
 
     function handleLogout() {
         localStorage.removeItem('userName');
@@ -42,6 +56,10 @@ export function Map({ onLogout }) {
             </header>
 
             <main className="container my-4 flex-grow-1">
+                <div className="quote-box text-center mt-4">
+                    <p className="quote" style={{ fontFamily: 'Pacifico, cursive', fontSize: '24px' }}>{quote}</p>
+                    <p className="author" style={{ fontStyle: 'italic' }}>- {quoteAuthor}</p>
+                </div>
                 <h2>Explore nearby games</h2>
                 <div
                     id="map"
