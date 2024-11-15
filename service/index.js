@@ -6,7 +6,7 @@ const { parseStringPromise } = require('xml2js');
 
 const app = express();
 let users = {};
-let yourGames = {};
+let gameRatings = [];
 
 // Parse JSON bodies
 app.use(express.json());
@@ -62,6 +62,19 @@ apiRouter.get('/hotgames', async (req, res) => {
     res.status(500).send({ msg: 'Failed to fetch hot games' });
   }
 });
+
+// Endpoint to store game ratings
+apiRouter.post('/rate-game', (req, res) => {
+  const { gameId, rating, difficulty, review } = req.body;
+  gameRatings.push({ gameId, rating, difficulty, review });
+  res.status(201).send({ msg: 'Rating saved successfully' });
+});
+
+// Endpoint to get all game ratings
+apiRouter.get('/rate-game', (req, res) => {
+  res.send(gameRatings);
+});
+
 
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {

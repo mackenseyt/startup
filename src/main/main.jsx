@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Table, Form, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './main.css';
 
 export function Main({ onLogout }) {
     const navigate = useNavigate();
+    const [gameId, setGameId] = useState('');
+    const [rating, setRating] = useState('');
+    const [difficulty, setDifficulty] = useState('');
+    const [review, setReview] = useState('');
 
     function logout() {
         localStorage.removeItem('userName');
@@ -16,6 +21,21 @@ export function Main({ onLogout }) {
     function goToPage(path) {
         navigate(path);
     }
+
+    const handleRatingSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await axios.post('/api/rate-game', { gameId, rating, difficulty, review });
+            alert('Rating submitted successfully');
+            setGameId('');
+            setRating('');
+            setDifficulty('');
+            setReview('');
+        } catch (error) {
+            console.error('Error submitting rating:', error);
+            alert('Failed to submit rating');
+        }
+    };
 
     const NavigationButton = ({ path, label, variant }) => (
         <Button variant={variant} onClick={() => goToPage(path)} className="me-2">
@@ -56,9 +76,9 @@ export function Main({ onLogout }) {
                         </thead>
                         <tbody>
                             <tr>
-                                <td><Form.Control type="text" placeholder="Enter game name" /></td>
+                                <td><Form.Control type="text" placeholder="Enter game name" value={gameId} onChange={(e) => setGameId(e.target.value)} required /></td>
                                 <td>
-                                    <Form.Select>
+                                    <Form.Select value={rating} onChange={(e) => setRating(e.target.value)} required>
                                         <option value="">Select rating</option>
                                         {[1, 2, 3, 4, 5].map(num => (
                                             <option key={num} value={num}>{num}</option>
@@ -66,7 +86,7 @@ export function Main({ onLogout }) {
                                     </Form.Select>
                                 </td>
                                 <td>
-                                    <Form.Select>
+                                    <Form.Select value={difficulty} onChange={(e) => setDifficulty(e.target.value)} required>
                                         <option value="">Select difficulty</option>
                                         <option value="Easy">Easy</option>
                                         <option value="Medium">Medium</option>
@@ -74,10 +94,10 @@ export function Main({ onLogout }) {
                                     </Form.Select>
                                 </td>
                                 <td>
-                                    <Form.Control as="textarea" placeholder="Enter your review here..." />
+                                    <Form.Control as="textarea" placeholder="Enter your review here..." value={review} onChange={(e) => setReview(e.target.value)} required />
                                 </td>
                                 <td className="text-center">
-                                    <Button variant="outline-dark">Submit</Button>
+                                    <Button variant="outline-dark" onClick={handleRatingSubmit}>Submit</Button>
                                 </td>
                             </tr>
                         </tbody>
