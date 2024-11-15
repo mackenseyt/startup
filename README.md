@@ -100,16 +100,16 @@ For this deliverable, I used JavaScript and React to create a fully functional, 
 For this deliverable, I added backend endpoints that receive user information and game data and send information about popular games.
 - Node.js/Express HTTP service - done!
 - Static middleware for frontend - done!
-- Calls to third party endpoints - Called Board Game Geek API from the backend to retrieve popular games, and integrated the quote API (quote.cs260) on the map page from the frontend.
-- Backend service endpoints - Implemented placeholder endpoints for login to store the current user on the server. Added endpoints for storing game data and sending current popular games.
-- Frontend calls service endpoints -  I used the fetch function to interact with backend service endpoints for retrieving and storing game data.
+- Calls to third party endpoints - Called Board Game Geek API from the backend to retrieve popular games (still working on getting it complelty functional), and integrated the quote API (quote.cs260) on the map page from the frontend (this is working!).
+- Backend service endpoints - Implemented placeholder endpoints for login to store the current user on the server (these ones work). Added endpoints for storing game data and sending current popular games (not fully funcitonal yet).
+- Frontend calls service endpoints -  I used the fetch function to interact with backend service endpoints for retrieving and storing game data, user info, and popular games.
 
 
 
 
-# Current Login
+<!-- # Current Login
 **username:** `testuser`
-**password:** `password123`
+**password:** `password123` -->
 
 
 
