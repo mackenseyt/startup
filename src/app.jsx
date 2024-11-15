@@ -1,11 +1,12 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Login } from './login/login';
 import { Main } from './main/main';
 import { Games } from './games/game';
 import { Friends } from './friends/friends';
 import { Map } from './map/map';
 import { AuthState } from './login/authState';
+import { Unauthenticated } from './login/unauthenticated';
 
 function App() {
   const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
@@ -21,29 +22,20 @@ function App() {
     }
   };
 
-  const onLogout = () => {
-    setAuthState(AuthState.Unauthenticated);
-    setUserName('');
+  const handleLogout = () => {
     localStorage.removeItem('userName');
+    setAuthState(AuthState.Unauthenticated);
   };
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Login
-              userName={userName}
-              authState={authState}
-              onAuthChange={handleAuthChange}
-            />
-          }
-        />
-        <Route path="/main" element={<Main onLogout={onLogout} />} />
-        <Route path="/games" element={<Games onLogout={onLogout} />} />
-        <Route path="/friends" element={<Friends onLogout={onLogout} />} />
-        <Route path="/map" element={<Map onLogout={onLogout} />} />
+        <Route path="/" element={authState === AuthState.Authenticated ? <Navigate to="/main" /> : <Login onAuthChange={handleAuthChange} />} />
+        <Route path="/main" element={authState === AuthState.Authenticated ? <Main onLogout={handleLogout} /> : <Navigate to="/" />} />
+        <Route path="/games" element={authState === AuthState.Authenticated ? <Games onLogout={handleLogout} /> : <Navigate to="/" />} />
+        <Route path="/friends" element={authState === AuthState.Authenticated ? <Friends onLogout={handleLogout} /> : <Navigate to="/" />} />
+        <Route path="/map" element={authState === AuthState.Authenticated ? <Map onLogout={handleLogout} /> : <Navigate to="/" />} />
+        <Route path="/unauthenticated" element={<Unauthenticated onLogout={handleLogout} />} />
       </Routes>
     </BrowserRouter>
   );
