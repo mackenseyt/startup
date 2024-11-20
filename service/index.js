@@ -1,54 +1,59 @@
+const cookieParser = require('cookie-parser');
+const bcrypt = require('bcrypt');
 const express = require('express');
-const path = require('path');
-const uuid = require('uuid');
-const axios = require('axios');
-const { parseStringPromise } = require('xml2js');
-
 const app = express();
-let users = {};
-let gameRatings = [];
+const DB = require('./database.js');
 
-// Parse JSON bodies
+const authCookieName = 'token';
+
+// JSON body parsing using built-in middleware
 app.use(express.json());
 
-// Serve static files from the "public" directory (make sure your frontend build is in "public")
-app.use(express.static(path.join(__dirname, 'public')));
+// Use the cookie parser middleware for tracking authentication tokens
+app.use(cookieParser());
 
-// Create and configure the API router
-var apiRouter = express.Router();
-app.use('/api', apiRouter);
+// Serve up the applications static content
+app.use(express.static('public'));
 
-// Endpoint to create a new user
+// Trust headers that are forwarded from the proxy so we can determine IP addresses
+app.set('trust proxy', true);
+
+// Router for service endpoints
+const apiRouter = express.Router();
+app.use(`/api`, apiRouter);
+
+// CreateAuth token for a new user
 apiRouter.post('/auth/create', async (req, res) => {
-  const user = users[req.body.email];
-  if (user) {
+  if (await DB.getUser(req.body.email)) {
     res.status(409).send({ msg: 'Existing user' });
   } else {
-    const newUser = { email: req.body.email, password: req.body.password, token: uuid.v4() };
-    users[newUser.email] = newUser;
-    res.send({ token: newUser.token });
+    const user = await DB.createUser(req.body.email, req.body.password);
+
+    // Set the cookie
+    setAuthCookie(res, user.token);
+
+    res.send({
+      id: user._id,
+    });
   }
 });
 
-// Endpoint to handle user login
+// GetAuth token for the provided credentials
 apiRouter.post('/auth/login', async (req, res) => {
-  const user = users[req.body.email];
+  const user = await DB.getUser(req.body.email);
   if (user) {
-    if (req.body.password === user.password) {
-      user.token = uuid.v4();
-      res.send({ token: user.token });
+    if (await bcrypt.compare(req.body.password, user.password)) {
+      setAuthCookie(res, user.token);
+      res.send({ id: user._id });
       return;
     }
   }
   res.status(401).send({ msg: 'Unauthorized' });
 });
 
-// Endpoint to logout a user
-apiRouter.delete('/auth/logout', (req, res) => {
-  const user = Object.values(users).find((u) => u.token === req.body.token);
-  if (user) {
-    delete user.token;
-  }
+// DeleteAuth token if stored in cookie
+apiRouter.delete('/auth/logout', (_req, res) => {
+  res.clearCookie(authCookieName);
   res.status(204).end();
 });
 
@@ -74,7 +79,6 @@ apiRouter.post('/rate-game', (req, res) => {
 apiRouter.get('/rate-game', (req, res) => {
   res.send(gameRatings);
 });
-
 
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {

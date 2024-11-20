@@ -1,48 +1,61 @@
 const { MongoClient } = require('mongodb');
+const bcrypt = require('bcrypt');
+const uuid = require('uuid');
 const config = require('./dbConfig.json');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
-const client = new MongoClient(url, {
-    tls: true,
-    serverSelectionTimeoutMS: 3000,
-    autoSelectFamily: false,
+const client = new MongoClient(url);
+const db = client.db('startup');
+const userCollection = db.collection('user');
+
+// This will asynchronously test the connection and exit the process if it fails
+(async function testConnection() {
+  await client.connect();
+  await db.command({ ping: 1 });
+  console.log("Connected successfully to MongoDB server");
+})().catch((ex) => {
+  console.log(`Unable to connect to database with ${url} because ${ex.message}`);
+  process.exit(1);
 });
 
-
-async function testDatabase() {
-
-    try {
-        // Connect to the MongoDB cluster
-        await client.connect();
-        console.log("Connected successfully to MongoDB Atlas!");
-
-        // Access the database and collection
-        const db = client.db('rental');
-        const collection = db.collection('house');
-
-        // Insert a sample document
-        const house = {
-            name: 'Beachfront views',
-            summary: 'From your bedroom to the beach, no shoes required',
-            property_type: 'Condo',
-            beds: 1,
-        };
-        const result = await collection.insertOne(house);
-        console.log("Document inserted with _id:", result.insertedId);
-
-        // Query the documents
-        const query = { property_type: 'Condo', beds: { $lt: 2 } };
-        const options = { sort: { price: -1 }, limit: 10 };
-        const cursor = collection.find(query, options);
-        const rentals = await cursor.toArray();
-        console.log("Found documents:", rentals);
-
-    } catch (err) {
-        console.error("An error occurred:", err);
-    } finally {
-        // Close the client
-        await client.close();
-    }
+function getUser(email) {
+  return userCollection.findOne({ email: email });
 }
 
-testDatabase().catch(console.error);
+function getUserByToken(token) {
+  return userCollection.findOne({ token: token });
+}
+
+async function createUser(email, password) {
+  // Hash the password before we insert it into the database
+  const passwordHash = await bcrypt.hash(password, 10);
+
+  const user = {
+    email: email,
+    password: passwordHash,
+    token: uuid.v4(),
+  };
+  await userCollection.insertOne(user);
+
+  return user;
+}
+
+// async function addScore(score) {
+//   return scoreCollection.insertOne(score);
+// }
+
+// function getHighScores() {
+//   const query = { score: { $gt: 0, $lt: 900 } };
+//   const options = {
+//     sort: { score: -1 },
+//     limit: 10,
+//   };
+//   const cursor = scoreCollection.find(query, options);
+//   return cursor.toArray();
+// }
+
+module.exports = {
+  getUser,
+  getUserByToken,
+  createUser
+};
