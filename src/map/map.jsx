@@ -22,12 +22,6 @@ export function Map({ onLogout }) {
             });
     }, []);
 
-    function handleLogout() {
-        localStorage.removeItem('userName');
-        onLogout();
-        navigate('/');
-    }
-
     function navigateTo(path) {
         navigate(path);
     }
@@ -37,7 +31,7 @@ export function Map({ onLogout }) {
             <header className="main_header">
                 <div className="container d-flex justify-content-between align-items-center">
                     <h1 className="display-4">Find Games Played</h1>
-                    <Button variant="light" onClick={handleLogout}>
+                    <Button variant="light" onClick={onLogout}>
                         Logout
                     </Button>
                 </div>

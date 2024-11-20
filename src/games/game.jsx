@@ -8,11 +8,6 @@ export function Games({ onLogout }) {
     const navigate = useNavigate();
     const [hotGames, setHotGames] = useState([]);
 
-    const logout = () => {
-        localStorage.removeItem('userName');
-        onLogout();
-        navigate('/');
-    };
 
     const goToPage = (path) => navigate(path);
     
@@ -33,7 +28,7 @@ export function Games({ onLogout }) {
         <header className="main_header">
             <div className="container d-flex justify-content-between align-items-center">
                 <h1 className="display-4">My Played Games</h1>
-                <Button variant='light' onClick={logout}>Logout</Button>
+                <Button variant='light' onClick={onLogout}>Logout</Button>
             </div>
             <nav className="container mt-3">
                 <Button variant="light" onClick={() => goToPage('/main')} className="me-2">Home</Button>

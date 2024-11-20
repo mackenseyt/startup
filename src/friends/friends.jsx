@@ -9,11 +9,6 @@ export function Friends({ onLogout }) {
     const navigate = useNavigate();
     const [selectedFriend, setSelectedFriend] = useState(null);
 
-    function logout() {
-        localStorage.removeItem('userName');
-        onLogout();
-        navigate('/');
-    }
     function goToPage(path) {
         navigate(path);
     }
@@ -23,7 +18,7 @@ export function Friends({ onLogout }) {
             <header className="main_header">
                 <div className="container d-flex justify-content-between align-items-center">
                     <h1 className="display-4">Friends List</h1>
-                    <Button variant='light' onClick={logout}>
+                    <Button variant='light' onClick={onLogout}>
                         Logout
                     </Button>
                 </div>

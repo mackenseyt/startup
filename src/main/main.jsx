@@ -12,12 +12,6 @@ export function Main({ onLogout }) {
     const [difficulty, setDifficulty] = useState('');
     const [review, setReview] = useState('');
 
-    function logout() {
-        localStorage.removeItem('userName');
-        onLogout();
-        navigate('/');
-    }
-
     function goToPage(path) {
         navigate(path);
     }
@@ -48,7 +42,7 @@ export function Main({ onLogout }) {
             <header className="main_header">
                 <div className="container d-flex justify-content-between align-items-center">
                     <h1 className="display-4">Welcome to Game Tracker</h1>
-                    <Button variant='light' onClick={logout}>
+                    <Button variant='light' onClick={onLogout}>
                         Logout
                     </Button>
                 </div>

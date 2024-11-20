@@ -22,9 +22,22 @@ function App() {
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('userName');
-    setAuthState(AuthState.Unauthenticated);
+  const handleLogout = async () => {
+    try {
+      await fetch(`/api/auth/logout`, {
+        method: 'delete',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ token: localStorage.getItem('token') }),
+      });
+    } catch (error) {
+      console.error('Logout failed:', error);
+    } finally {
+      localStorage.removeItem('userName');
+      localStorage.removeItem('token');
+      setAuthState(AuthState.Unauthenticated);
+    }
   };
 
   return (
