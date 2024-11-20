@@ -46,11 +46,6 @@ export function Unauthenticated(props) {
       setDisplayError('An error occurred. Please try again.');
     }
   }
-  const logout = () => {
-    localStorage.removeItem('userName');
-    props.onLogout();
-  };
-
 
   return (
     <>
