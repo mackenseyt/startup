@@ -111,7 +111,8 @@ For this deliverable, I added backend endpoints that receive user information an
 - User registration - Creates a new account in the database.
 - Existing user - Stores the game rating data. Not under a specific user yet...
 - Use MongoDB to store credentials - Stores both user and games rated.
-- Restricts functionality - You don't have access to anything until you log in.
+- Restricts functionality - You don't have access to anything until you log in. 
+Once loged in you can rate games and see a list of all the games rated.
 
 <!-- # Current Login
 **username:** `testuser`
