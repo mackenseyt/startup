@@ -5,6 +5,8 @@ const app = express();
 const DB = require('./database.js');
 
 const authCookieName = 'token';
+const { ratingCollection } = require('./database.js');
+
 
 // JSON body parsing using built-in middleware
 app.use(express.json());
@@ -39,16 +41,57 @@ apiRouter.post('/auth/create', async (req, res) => {
 });
 
 // GetAuth token for the provided credentials
-apiRouter.post('/auth/login', async (req, res) => {
-  const user = await DB.getUser(req.body.email);
-  if (user) {
-    if (await bcrypt.compare(req.body.password, user.password)) {
-      setAuthCookie(res, user.token);
-      res.send({ id: user._id });
-      return;
-    }
+apiRouter.post('/rate-game', async (req, res) => {
+  const authToken = req.cookies[authCookieName];
+  if (!authToken) {
+    return res.status(401).send({ msg: 'Unauthorized' });
   }
-  res.status(401).send({ msg: 'Unauthorized' });
+
+  const user = await DB.getUserByToken(authToken);
+  if (!user) {
+    return res.status(401).send({ msg: 'Unauthorized' });
+  }
+
+  const { gameId, rating, difficulty, review } = req.body;
+  if (!gameId || !rating || !difficulty || !review) {
+    return res.status(400).send({ msg: 'Invalid input' });
+  }
+
+  const newRating = {
+    userId: user._id,
+    gameId,
+    rating,
+    difficulty,
+    review,
+    date: new Date()
+  };
+
+  try {
+    await DB.insertRating(newRating);
+    res.status(201).send({ msg: 'Rating saved successfully' });
+  } catch (error) {
+    console.error('Failed to save rating:', error);
+    res.status(500).send({ msg: 'Internal server error' });
+  }
+});
+apiRouter.get('/user-ratings', async (req, res) => {
+  const authToken = req.cookies[authCookieName];
+  if (!authToken) {
+    return res.status(401).send({ msg: 'Unauthorized' });
+  }
+
+  const user = await DB.getUserByToken(authToken);
+  if (!user) {
+    return res.status(401).send({ msg: 'Unauthorized' });
+  }
+
+  try {
+    const ratings = await DB.getRatingsByUser(user._id);
+    res.status(200).send(ratings);
+  } catch (error) {
+    console.error('Failed to fetch user ratings:', error);
+    res.status(500).send({ msg: 'Internal server error' });
+  }
 });
 
 // DeleteAuth token if stored in cookie
@@ -57,28 +100,23 @@ apiRouter.delete('/auth/logout', (_req, res) => {
   res.status(204).end();
 });
 
-// Endpoint to get hot games
-apiRouter.get('/hotgames', async (req, res) => {
-  try {
-    const response = await axios.get('https://boardgamegeek.com/xmlapi2/hot?type=boardgame');
-    const result = await parseStringPromise(response.data);
-    res.send(result);
-  } catch (error) {
-    res.status(500).send({ msg: 'Failed to fetch hot games' });
-  }
-});
-
-// Endpoint to store game ratings
-apiRouter.post('/rate-game', (req, res) => {
+apiRouter.post('/rate-game', async (req, res) => {
+  console.log('Received data:', req.body);
   const { gameId, rating, difficulty, review } = req.body;
-  gameRatings.push({ gameId, rating, difficulty, review });
+  if (!gameId || !rating || !difficulty || !review) {
+      return res.status(400).send({ msg: 'Invalid input' });
+  }
+  const newRating = { gameId, rating, difficulty, review, date: new Date() };
+  await ratingCollection.insertOne(newRating);
   res.status(201).send({ msg: 'Rating saved successfully' });
 });
 
-// Endpoint to get all game ratings
-apiRouter.get('/rate-game', (req, res) => {
-  res.send(gameRatings);
+
+apiRouter.get('/rate-game', async (_req, res) => {
+    const ratings = await ratingCollection.find().toArray();
+    res.send(ratings);
 });
+
 
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {

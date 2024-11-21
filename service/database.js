@@ -7,6 +7,7 @@ const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostna
 const client = new MongoClient(url);
 const db = client.db('startup');
 const userCollection = db.collection('user');
+const ratingCollection = db.collection('ratings');
 
 // This will asynchronously test the connection and exit the process if it fails
 (async function testConnection() {
@@ -40,22 +41,37 @@ async function createUser(email, password) {
   return user;
 }
 
-// async function addScore(score) {
-//   return scoreCollection.insertOne(score);
-// }
+async function insertRating(rating) {
+  try {
+      return await ratingCollection.insertOne(rating);
+  } catch (error) {
+      console.error('Failed to insert rating:', error);
+      throw error;
+  }
+}
 
-// function getHighScores() {
-//   const query = { score: { $gt: 0, $lt: 900 } };
-//   const options = {
-//     sort: { score: -1 },
-//     limit: 10,
-//   };
-//   const cursor = scoreCollection.find(query, options);
-//   return cursor.toArray();
-// }
-
+async function getRatings() {
+  try {
+      return await ratingCollection.find().toArray();
+  } catch (error) {
+      console.error('Failed to retrieve ratings:', error);
+      throw error;
+  }
+}
+async function getRatingsByUser(userId) {
+  try {
+    return await ratingCollection.find({ userId }).toArray();
+  } catch (error) {
+    console.error('Failed to fetch ratings by user:', error);
+    throw error;
+  }
+}
 module.exports = {
   getUser,
-  getUserByToken,
-  createUser
+    getUserByToken,
+    createUser,
+    insertRating,
+    getRatings,
+    ratingCollection,
+    getRatingsByUser,
 };
