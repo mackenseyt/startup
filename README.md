@@ -105,7 +105,13 @@ For this deliverable, I added backend endpoints that receive user information an
 - Frontend calls service endpoints -  I used the fetch function to interact with backend service endpoints for retrieving and storing game data, user info, and popular games.
 
 
-
+# DB/Login Deliverable
+- MongoDB Atlas database created - done!
+- Stores data in MongoDB - done!
+- User registration - Creates a new account in the database.
+- Existing user - Stores the game rating data. Not under a specific user yet...
+- Use MongoDB to store credentials - Stores both user and games rated.
+- Restricts functionality - You don't have access to anything until you log in.
 
 <!-- # Current Login
 **username:** `testuser`
