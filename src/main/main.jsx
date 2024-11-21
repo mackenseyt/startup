@@ -19,6 +19,7 @@ export function Main({ onLogout }) {
     const handleRatingSubmit = async (e) => {
         e.preventDefault();
         try {
+            console.log('Submitting rating:', { gameId, rating, difficulty, review });
             await axios.post('/api/rate-game', { gameId, rating, difficulty, review });
             alert('Rating submitted successfully');
             setGameId('');

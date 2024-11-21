@@ -7,6 +7,7 @@ import '../main/main.css';
 export function Games({ onLogout }) {
     const navigate = useNavigate();
     const [hotGames, setHotGames] = useState([]);
+    const [userRatings, setUserRatings] = useState([]);
 
 
     const goToPage = (path) => navigate(path);
@@ -22,6 +23,14 @@ export function Games({ onLogout }) {
                 setHotGames(data); // Directly set hotGames with the returned array
             })
             .catch(error => console.error('Error fetching hot games:', error));
+            // Fetch user's game ratings from the backend
+            fetch('api/rate-game', { credentials: 'include' })
+            .then(response => response.json())
+            .then(data => {
+                console.log("User ratings data:", data); // Verify data structure
+                setUserRatings(data); // Directly set userRatings with the returned array
+            })
+            .catch(error => console.error('Error fetching user ratings:', error));
     }, []);
 
     const Header = () => (
@@ -53,11 +62,14 @@ export function Games({ onLogout }) {
             <main className="container my-4 flex-grow-1">
                 <h2 className="mb-4">Game History</h2>
                 <Accordion id="gameAccordion">
-                    {[1, 2].map((game, index) => (
-                        <Accordion.Item eventKey={index.toString()} key={index}>
-                            <Accordion.Header>Example Game {game}</Accordion.Header>
+                    {userRatings.map((rating, index) => (
+                        <Accordion.Item eventKey={index.toString()} key={rating._id}>
+                            <Accordion.Header>Game ID: {rating.gameId}</Accordion.Header>
                             <Accordion.Body>
-                                Details about Example Game {game}.
+                                <p>Rating: {rating.rating}</p>
+                                <p>Difficulty: {rating.difficulty}</p>
+                                <p>Review: {rating.review}</p>
+                                <p>Date: {new Date(rating.date).toLocaleDateString()}</p>
                             </Accordion.Body>
                         </Accordion.Item>
                     ))}
