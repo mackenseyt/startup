@@ -93,6 +93,18 @@ apiRouter.get('/user-ratings', async (req, res) => {
     res.status(500).send({ msg: 'Internal server error' });
   }
 });
+// GetAuth token for the provided credentials
+apiRouter.post('/auth/login', async (req, res) => {
+  const user = await DB.getUser(req.body.email);
+  if (user) {
+    if (await bcrypt.compare(req.body.password, user.password)) {
+      setAuthCookie(res, user.token);
+      res.send({ id: user._id });
+      return;
+    }
+  }
+  res.status(401).send({ msg: 'Unauthorized' });
+});
 
 // DeleteAuth token if stored in cookie
 apiRouter.delete('/auth/logout', (_req, res) => {
@@ -136,4 +148,3 @@ function setAuthCookie(res, authToken) {
     sameSite: 'strict',
   });
 }
-
