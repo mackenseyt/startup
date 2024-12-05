@@ -114,6 +114,12 @@ For this deliverable, I added backend endpoints that receive user information an
 - Restricts functionality - You don't have access to anything until you log in. 
 Once loged in you can rate games and see a list of all the games rated.
 
+# Websocket
+- Backend listens for WebSocket connection - done!
+- Frontend makes WebSocket connection - done!
+- Data sent over WebSocket connection - Working on connecting friends.
+- WebSocket data displayed - All user votes ratings display in real time on the homescreen. (working on this)
+
 <!-- # Current Login
 **username:** `testuser`
 **password:** `password123` -->
