@@ -116,7 +116,7 @@ Once loged in you can rate games and see a list of all the games rated.
 
 # Websocket
 - Backend listens for WebSocket connection - done!
-- Frontend makes WebSocket connection - done!
+- Frontend makes WebSocket connection - done! (For some reason it keeps not connecting but i can't figure it out)
 - Data sent over WebSocket connection - Working on connecting friends.
 - WebSocket data displayed - All user votes ratings display in real time on the homescreen. (working on this)
 

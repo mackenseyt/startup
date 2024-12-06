@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Table, Form, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './main.css';
+import { GameEvent, GameNotifier } from './gameEventNotifier'; // Import notifier
 
 export function Main({ onLogout }) {
     const navigate = useNavigate();
@@ -11,16 +12,41 @@ export function Main({ onLogout }) {
     const [rating, setRating] = useState('');
     const [difficulty, setDifficulty] = useState('');
     const [review, setReview] = useState('');
+    const [gameFeed, setGameFeed] = useState([]); // State for real-time game feed
 
     function goToPage(path) {
         navigate(path);
     }
 
+    useEffect(() => {
+        // Handler for real-time events
+        const handleRealTimeEvent = (event) => {
+            if (event.type === GameEvent.GameRated || event.type === GameEvent.FriendAction) {
+                setGameFeed((prevFeed) => [event, ...prevFeed]);
+            }
+        };
+
+        // Add handler when component mounts
+        GameNotifier.addHandler(handleRealTimeEvent);
+
+        // Clean up handler when component unmounts
+        return () => {
+            GameNotifier.removeHandler(handleRealTimeEvent);
+        };
+    }, []);
+
     const handleRatingSubmit = async (e) => {
         e.preventDefault();
         try {
             console.log('Submitting rating:', { gameId, rating, difficulty, review });
-            await axios.post('/api/rate-game', { gameId, rating, difficulty, review });
+            const ratingData = { gameId, rating, difficulty, review };
+
+            // Send data to the server
+            await axios.post('/api/rate-game', ratingData);
+
+            // Broadcast event using the notifier
+            GameNotifier.broadcastEvent('You', GameEvent.GameRated, ratingData);
+
             alert('Rating submitted successfully');
             setGameId('');
             setRating('');
@@ -104,33 +130,19 @@ export function Main({ onLogout }) {
                     <h3 className="mb-3">The Game Feed</h3>
                     <p className="text-muted">See what games your friends are playing in real-time:</p>
 
-                    {[
-                        {
-                            friend: 'John Doe',
-                            game: 'Catan',
-                            rating: '5/5',
-                            difficulty: 'Medium',
-                            review: 'Great game, really fun with friends!',
-                            date: 'October 8, 2024'
-                        },
-                        {
-                            friend: 'Jane Smith',
-                            game: 'Ticket to Ride',
-                            rating: '4/5',
-                            difficulty: 'Easy',
-                            review: 'A fun, strategic game!',
-                            date: 'October 6, 2024'
-                        }
-                    ].map((entry, index) => (
-                        <Alert key={index} variant="secondary">
-                            <strong>Friend:</strong> {entry.friend}<br />
-                            <strong>Game:</strong> {entry.game}<br />
-                            <strong>Rating:</strong> {entry.rating}<br />
-                            <strong>Difficulty:</strong> {entry.difficulty}<br />
-                            <strong>Review:</strong> "{entry.review}"<br />
-                            <strong>Date Played:</strong> {entry.date}
-                        </Alert>
-                    ))}
+                    {gameFeed.length > 0 ? (
+                        gameFeed.map((event, index) => (
+                            <Alert key={index} variant="secondary">
+                                <strong>From:</strong> {event.from}<br />
+                                <strong>Game:</strong> {event.value.gameId || 'N/A'}<br />
+                                <strong>Rating:</strong> {event.value.rating || 'N/A'}<br />
+                                <strong>Difficulty:</strong> {event.value.difficulty || 'N/A'}<br />
+                                <strong>Review:</strong> {event.value.review || 'N/A'}<br />
+                            </Alert>
+                        ))
+                    ) : (
+                        <p>No recent activity yet.</p>
+                    )}
                 </div>
             </main>
 
